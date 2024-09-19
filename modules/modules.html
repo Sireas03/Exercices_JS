@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+        import {sum as somme, hi, salutation} from './array.js'
+        import hello from './hello.js'
+        import complique from './array.js' // -> fonctionne aussi import {sum as somme, default as complique}
+        import * as A from './array.js' // -> deconseillé car trop loud, il vaut miuex import seulement ce dont on as besoin 
+        //console.log(somme([12, 23, 19]))
+        console.log(A.sum([12, 15, 3]))
+        console.log(somme([3, 7, 10]))
+        console.log(hello())
+        console.log(complique())
+        console.log(import('./array.js').then((...args) => {    // --- identique
+            console.log(args)
+        }))
+        console.log(import('./array.js').then(({hi}) => {
+            hi()                                                // --- identique
+        }))
+    </script>
+</head>
+<body>
+</body>
+</html>
