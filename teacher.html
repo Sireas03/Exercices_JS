@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const students = [
+            {
+                name : 'John',
+                notes: [1, 20, 18, 19, 12]
+            },
+            {
+                name: 'Jane',
+                notes: [17, 18, 20, 13, 15]
+            },
+            {
+                name: 'Sophie',
+                notes: [17, 12, 14, 15, 13]
+            },
+            {
+                name: 'Marc',
+                notes: [2, 3, 5, 8, 9]
+            },
+            {
+                name: 'Manon',
+                notes: [8, 17, 18, 19, 12]
+            }
+        ]
+
+        const moyenne = (notes) => {
+            let sum = 0
+            for (let note of notes) {
+                sum = sum + note
+            }
+            return (sum / notes.length)
+        }
+
+        const compareStudent = (a, b) =>
+        {
+            return b.moyenne - a.moyenne
+        }
+
+        for (let student of students) {
+            student.moyenne = moyenne(student.notes)
+            student.min = Math.min(...student.notes)
+            student.max = Math.max(...student.notes)
+        }
+
+        students.sort(compareStudent)
+
+        console.log(`Top 3 étudiant :
+        1: ${students[0].name} avec une moyenne de ${students[0].moyenne} !
+        2: ${students[1].name} avec une moyenne de ${students[1].moyenne} !
+        3: ${students[2].name} avec une moyenne de ${students[2].moyenne} !`)
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const phraseText = `Le texte généré est constitué de phrases, dont les mots sont selectionnés aleatoirement. Le tirage suit la repartition statistique dun referentiel textuel en langue francaise selon le principe des chaines de Markov En clair le generateur ne sait pas ce quil dit il ny a aucune regle semantique dans le moteur La base de reference est composee dun ensemble consequent de textes classiques dont une majorite de romans du XIXe siecle Quelle utilite Besoin de texte dapparence respectable pour tester une maquette ou simple curiosite Pour tester une maquette de site web ce faux texte est souvent utilise `
+        const frequencies = {}
+        const words = phraseText
+            .toLowerCase()
+            .replace(/[^a-zàâäéèêëîïôöùûüÿç\s]/g, '')
+            .split(' ')
+
+        
+
+        for (let word of words) {
+            if (word !== '') {
+                if (frequencies[word]) {
+                    frequencies[word]++
+                }
+                else
+                {
+                    frequencies[word] = 1
+                }
+            }
+        }
+        const frequenciesArray = []
+        for (let k in frequencies) {
+            frequenciesArray.push({
+                word: k,
+                count: frequencies[k]
+            })
+        }
+        frequenciesArray.sort((a, b) => b.count - a.count)
+        console.log(frequenciesArray)
+
+    </script>
+</head>
+<body>
+</body>
+</html>

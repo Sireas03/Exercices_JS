@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class Rectangle {
+
+            constructor(width, height) {
+                if (width <= 0 || height <= 0)
+                    throw new Error('Bad values of width or height')
+                this.width = width
+                this.height = height
+            }
+
+            get perimeter() {
+                return (this.width + this.height) * 2
+            }
+
+            get isValid() {
+                return this.width > 0 && this.height > 0
+            }
+
+            isBiggerThan(shape) {
+                return this.perimeter > shape.perimeter 
+            }
+            }
+
+            class Square extends Rectangle {
+            constructor(width) {
+                super(width, width)
+            }
+            }
+            try {
+            const r = new Rectangle(-10, 20);
+            } catch (e) {
+            console.log(e)
+            }
+            console.log(r.perimeter)
+            console.log(r.isValid)
+    </script>
+</head>
+<body>
+</body>
+</html>
