@@ -5,7 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        let i = 0
+        const t = setInterval(() => {
+            i++
+            console.log(`timer entre les repatitons -> ${i}`)
         
+            if (i >= 5) {
+                clearInterval(t)
+            }
+        }, 1000)
+
+        /*methode 1 */
+        function decompte1(n) {
+            const t = setInterval(() => {
+                console.log(`decompte 1 -> ${n}`)
+                n--
+                if (n === 0) {
+                    clearInterval(t)
+                }
+            }, 3000);
+        }
+
+        /*methode 2*/
+        function decompte2(n) {
+            console.log(`decompte 2 -> ${n}`)
+            if (n === 0)    
+                return
+            setTimeout(() => {
+                decompte2(n - 1)
+            }, 5000)
+        }
+
+        decompte2(3)
+        decompte1(3)
     </script>
 </head>
 <body>
