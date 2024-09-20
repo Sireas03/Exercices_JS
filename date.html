@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title>
+    <script>
+        function addDays(date, days) {
+            const newDate = new Date(date.getTime())
+            newDate.setDate(newDate.getDate() + days)
+            return newDate
+        }
+
+        const MONTHS = 'months'
+        const DAYS = 'days'
+        const YEARS = 'years'
+
+        /*  Méthode 1   */
+        function addInterval(date, n, unit) {
+            const future = new Date(date.getTime())
+            switch (unit) {
+                case MONTHS:
+                        future.setMonth(future.getMonth() + n)
+                        break;
+                case DAYS:
+                        future.setDate(future.getDate() + n)
+                        break;
+                case YEARS:
+                    future.setFullYear(future.getFullYear() + n)
+                    break;
+            }
+            return future
+        }
+
+        const months = 1
+        const days = 2
+        const years = 0
+
+        /*  Méthode 2   */
+        function addInterval2(date, n, unit) {
+            const actualDate = [
+                date.getFullYear(),
+                date.getMonth(),
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds(),
+                date.getMilliseconds()
+            ]
+            actualDate[unit] += n
+            return new Date(...actualDate)
+        }
+
+        /*  Méthode 3   */
+
+        const Months = 1 // notation sous forme d'ordre, le mois est la 2e valeur dans la liste de actualDate
+        const Days = 2
+        const Years = 0
+
+        function addInterval3(date, interval) {
+            const actualDate2 = [
+            date.getFullYear(),
+                date.getMonth(),
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds(),
+                date.getMilliseconds()
+            ]
+            for (const[unit, value] of Object.entries(interval)) {
+                actualDate2[unit] += value
+            }
+            return new Date(...actualDate2)
+        }
+
+        const today = new Date();
+        const nextWeek = addDays(today, 7);
+        const future = addInterval(today, 7, MONTHS)
+        const future2 = addInterval2(today, 1, years)
+        const future3 = addInterval3(today, {
+            [Months]: 3,
+            [Days]: 5
+        })
+        console.log(`Today is : ${today}`)
+        console.log(`Next week will be : ${nextWeek}`)
+        console.log(`Next Released in ${(nextWeek.getTime() - Date.now()) / (1000 *60*60*24)}`) // exemple pour afficher un evenement arrivant dans 1 semaine, ce n'est pas pratique car il faut diviser par millisecondes puis secondes puis heures puis jours etc
+        console.log(`The future date will be : ${future}`)
+        console.log(`In 1 year we will be : ${future2}`)
+        console.log(`Next Christmas will be at : ${future3}`)
+    </script>
+</head>
+<body>
+</body>
+</html>
